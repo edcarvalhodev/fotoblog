@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* 1º - Criar classe com seletor universal e resetar os espaçamentos e refinar os textos
+  utilizand o vendor prefixes */
+}
+
+:root {
+  font-size: 62.5%;
+
+  --color-base-white: #ffffff;
+  --color-base-gray-100: #f5f5f5;
+  --color-base-gray-300: #8d8d99;
+  --color-base-gray-900: #202024;
+
+  font-family: 'Mulish', sans-serif;
+
+  /* 2º - Transformar o pixel de fonte padrão dos navegadores de 16px para 10px */
+  /* 7° - Variáveis de propriedades de cores serão aplicadas no root e posteriormente nas partes específicas do projeto. */
+  /* 10º - Os ajustes de fontes foram feitos e o font-family foi colocado na classe :root. Posteriormente ele sairá daqui. */
+}
+
+body {
+  font-size: 1.6rem;
+  background-color: var(--color-base-white);
+  color: var(--color-base-gray-900);
+
+  /* 3º - Restaurar o pixel padrão do body para 16px em rem (1.6rem), melhorando a forma de trabalhar com responsividade */
+  /* 9º - O body vai receber a variável no background-color no lugar da cor apontada antes, e também o color. */
+}
+
+#app {
+  display: grid;
+  grid-template-rows: max-content 1fr max-content;
+
+  height: 100vh;
+
+  /* 4º - Na caixa principal (app) o diplay grid é definido e as três áreas que serão trabalhadas recebem seus
+  espaçamentos: o header e o footer o conteúdo máximo e main 1 fração da altura de 100vh */
+}
+
+.container {
+  padding: 1.6rem 3.2rem;
+  width: min(112rem, 100%);
+  margin: 0 auto;
+
+  /* 5º - A classe container é criada e é ela que determnará a largura mínima e máxima do documento, os paddings e
+  o alinhamento centralizado*/
+}
+
+main {
+  overflow-y: scroll;
+  background-color: var(--color-base-gray-100);
+
+  /* 6º - Foi aplicado o overflow para que só o conteúdo do main receba rolagem, assim o header e o footer ficarão fixos. */
+  /* 8° - O main recebe o background-color já utilizando a variável criada. */
+}
+
+
+
+
+
+
+/*Criação do Header e Footer*/
+
+
+header, 
+nav, 
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: 7.2rem;
+  font-weight: 700;
+
+  /* 11º - Após os ajustes no html deu-se início nos estilos do cabeçalho. O display flex foi aplicado na tag header,
+  na tag nav e na ul para que tudo ficasse em linha. O align-items foi utilizado para centrarlizar e o gap para o esp4çamento. */
+  /* 15º - Após perceber que todos os textos recebem bold, o font-weight foi colocado dentro dessas tags. */
+}
+
+head form {
+  flex: 1;
+
+  /* 12º - O form recebe o flex 1 para ocupar toda a parte possível do espaço*/
+}
+
+nav ul {
+  list-style: none;
+  font-size: 1.8rem;
+  color: var(--color-base-gray-300);
+
+  /* 13º - A lista recebeu os estilos e inclusive a retirada dos bullets */
+}
+
+ul li .active {
+  color: var(--color-base-gray-900);
+
+  /* 14º - O texto dentro da item da lista recebe estilo */
+} 
+
+.avatar {
+  width: 4.2rem;
+  height: 4.2rem;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  /* 16º - A imagem do usuário na classe avatar recebeu os estilos e o destaque é para propriedade object-fit: cover que
+  irá cobrir os espaços caso a imagem não esteja no padrão.  */
+}
+
+footer {
+  text-align: center;
+  padding: 1.6rem;
+  font-weight: 600;
+
+  /* 17º - O footer recebe os estilos sem nenhuma novidade */
+}
+
+
+/* Criação do campo de Busca do Formulário */
+
+
+

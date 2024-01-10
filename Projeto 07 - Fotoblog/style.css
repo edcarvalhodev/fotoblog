@@ -1,0 +1,256 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/*Testando HSL*/
+
+:root {
+  font-size: 62.5%;
+
+  --hue: 310;
+  --color-base-white: hsl(0, 0%, 100%);
+  --color-base-gray-100: hsl(0, 0%, 96%);
+  --color-base-gray-300: hsl(var(--hue), 60%, 58%); /*Cor, saturação, luminosidade*/
+  --color-base-gray-500: hsl(0, 0%, 24%);
+  --color-base-gray-900: hsl(var(--hue), 60%, 30%);
+
+}
+
+/* :root {
+  font-size: 62.5%;
+
+  --color-base-white: #ffffff;
+  --color-base-gray-100: #f5f5f5;
+  --color-base-gray-300: #8d8d99;
+  --color-base-gray-500: #3D3D3D;
+  --color-base-gray-900: #202024;
+
+} */
+
+html, body, input {
+  
+  font-family: 'Mulish', sans-serif;
+
+  /*A font-family estava no :root, porém as vezes não se aplica nos elmentos, por isso convém criar uma classe para isso.*/
+}
+
+body {
+  font-size: 1.6rem;
+  background: var(--color-base-white);  
+  color: var(--color-base-gray-900);
+
+}
+
+#app {
+  display: grid;
+  grid-template-rows: max-content 1fr max-content;
+  height: 100vh;  
+}
+
+.container {
+  padding: 1.6rem 3.2rem;
+  width: min(112rem, 100%);
+  margin: 0 auto;
+}
+
+main {
+  overflow-y: scroll; /*Colocar barra de rolagem só no main*/
+  background-color: var(--color-base-gray-100);
+}
+
+header, nav, nav ul {
+  display: flex;
+  align-items: center;
+  gap: 7.2rem;
+  
+  font-weight: 700;
+}
+
+header form {
+  flex: 1; /*Todo o espaço disponível será preenchido*/
+}
+
+nav ul {
+  list-style: none;
+  font-size: 1.8rem;
+  color: var(--color-base-gray-300);
+}
+
+ul li.active {
+  color: var(--color-base-gray-900);
+}
+
+.input-wrapper label {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+
+  /* Formatação para esconder label na tela */
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 1.6rem;
+
+  background: var(--color-base-gray-100);
+  border: 0;
+  border-radius: .6rem;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.input-wrapper input::placeholder {
+  color: var(--color-base-gray-500);
+  opacity: 0.56;
+
+  /*Cor do texto no fundo do input*/
+}
+
+.avatar {
+  width: 4.2rem;
+  height: 4.2rem;
+
+  object-fit: cover; /*Quando a imagem não completa o espaço o object-fit vai cobrir: cover significa cobrir*/
+
+  border-radius: 50%; /*Quando a imagem é quadrada o border raidus 50% deixará ela redonda.*/
+}
+
+
+/* Galeria */
+
+main h1 {
+  padding-top: 1.6rem;
+  font-size: 2.4rem;
+}
+
+.gallery {
+  margin-top: 3.2rem;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.2rem;
+}
+
+.item img {
+  width: 100%;
+
+  aspect-ratio: 16/9; /*Ao analisar a tela no figma estima-se que as imagens estejam numa proporção de 16/9 - Estudar sobre isso.*/
+  object-fit: cover; /*Como as imagens ficaram esticadas, foi aplivado o object fit cover para deixá-las corretas, ainda assim algumas ficaram cortadas porque suas dimensões eram bem desiguiais, quase que um mode retrato.*/
+
+  /*filter: grayscale(1);*/ /*Aqui se fosse o caso de deixar as imagens em preto e branco*/
+
+  
+  /*Essas versões abaixo trata de cada aspecto*/
+  
+  /* transition-property: transform, filter;
+  transition-duration: 200ms;
+  transition-delay: 0;
+  transition-timing-function: ease-out; */
+
+
+  /*Existem tbm as versões compactadas*/
+
+  transition: all 200ms ease-out ;
+
+
+  /*Com timers diferentes*/
+
+  /* transition: filter 200ms ease-out, transform 600ms ease-in; */
+
+  display: block; /*Resolveu o problema da imagem estar escapando da caixa*/
+
+
+}
+
+.item img:hover {
+  filter: hue-rotate(7deg) contrast(101%) saturate(200%); /*Filtros aplicados quando o mouse passar pelas imagens*/
+  transform: scale(1.1) rotate(-1deg); /*A imagem cresce no scale e gira no rotate*/
+} 
+
+.item {
+  background: var(--color-base-white);
+  border-radius: .8rem;
+  overflow: hidden; /*Quando a imagem transborda para fora da caixa utiliza-se o overflow hidden, daí o radius funciona. Tudo o que sobra será escondido*/
+}
+
+
+.details {
+  padding: 2.2rem;
+
+  /*Será feita uma tentativa de evitar que a imagem fique pulando fora da caixa, mas a princípio não deu certo.*/
+  background: var(--color-base-white);
+  z-index: 1;
+  position: relative;
+}
+
+.details h2 {
+  font-size: 1.8rem;
+}
+
+.tags {
+  margin-top: 1.2rem;
+
+}
+
+.tags span {
+  padding: .6rem;
+  background: var(--color-base-gray-100);
+  border-radius: .4rem;
+
+  line-height: 0;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+footer p { 
+  text-align: center;
+  padding: 1.6rem;
+  font-weight: 600;
+}
+
+
+/*Implementação do Header e Footer utilizando @keyframes e variável*/
+
+header {
+  --startY: -100%;
+  animation: move .2s;
+}
+
+
+footer {
+  --startY: 100%;
+  animation: move .2s;
+}
+
+@keyframes move {
+  from {
+    transform: translateY(var(--startY));
+  }
+
+}
+
+/* Implementação dos itens de imagem animados */
+
+.item {
+  --delay: .4s;
+  animation: appear .4s var(--delay) backwards ;
+}
+
+@keyframes appear {
+  0% { /*backwards*/
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+}
+
